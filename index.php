@@ -1,4 +1,5 @@
 <?php
+global $yourDomain, $uploadDirectory, $addressToReportTo, $projectDirectory;
 error_reporting(0);
 include("settings.php");
 
@@ -49,10 +50,10 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
         mail($addressToReportTo, $encoded_subject, $message, $header);
     }
 }
-
-echo "<!doctype html>
-<html lang=\"$choosenLanguage\">";
 ?>
+
+<!doctype html>
+<html lang="<?php echo $choosenLanguage; ?>">
 <head>
     <meta charset="UTF-8"/>
     <META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">
@@ -62,12 +63,11 @@ echo "<!doctype html>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-<div class="logo" style="text-align: center;" alt="">
+<div class="logo" style="text-align: center;">
     <img src="assets/Circle-icons-speedometer.svg" width="150px" height="150px" alt="logo">
 </div>
 <div style="text-align: center;"><h1><?php echo $simplifiedDomainname ?></h1></div>
@@ -96,7 +96,7 @@ echo "<!doctype html>
         <p style="font-style: italic;"><?php echo textUploadBottomLine(); ?></p>
 </div>
 <div class="footer">
-    <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.3.2<br/>
+    <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.4.0<br/>
         <img src="assets/GitHub_Logo.png" alt="logo github"></a>
 </div>
 </body>

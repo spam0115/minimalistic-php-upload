@@ -58,7 +58,8 @@ p {
 }
 
 .status {
-  /*display: none;*/
+  animation: hideIt 3s forwards;
+  animation-delay: 10s;
   padding: 8px 35px 8px 14px;
   margin: 20px 0;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
@@ -68,6 +69,17 @@ p {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+}
+
+@keyframes hideIt{
+  to{
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 input[type="submit"] {
