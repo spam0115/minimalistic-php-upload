@@ -1,5 +1,4 @@
 # minimalistic PHP Upload
-
 Need a minimalistic upload script for sharing files? Use this! 
 
 * **simple installation**
@@ -15,6 +14,11 @@ Installation
 1. Create a new folder on your webserver with the name **uploadedFiles** (name is changeable in settings.php)
 
 Done. Open https://yourdomain.com/upload and try your **new minimalistic upload script for sharing files** - you should recieve an email with further information directly after someone uploaded a file.
+                           
+Sending emails
+-------------
+This script uses the default php [mail-function](https://www.php.net/manual/en/function.mail.php) to send emails.
+If not done already you may need to configure your php server to allow email sending via php. See php.ini configuration.
 
 Project details
 -------------
@@ -33,7 +37,7 @@ The project itself is although licenced under GPL - see here for [license detail
 Changelog
 -----------
 ### Version 1.4.0
-* Improve visualisation of file upload status with progress-bar
+* Improved visualisation of file upload status with progress-bar
 
 ### Version 1.3.2
 * added a random hash as prefix to the filenames on the server to avoid users accessing the files other than the reciever of the email _(for further details see [gitlab issue 2](https://github.com/timluedtke/minimalistic-PHP-Upload/issues/2))_
