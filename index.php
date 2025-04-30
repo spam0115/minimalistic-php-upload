@@ -82,22 +82,67 @@ if (isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST") {
                 printf("<p class='status'>%s</p><br />\n", $msg);
             }
         }
-        # success message if upload has finisched
+        # success message if upload has finished
         if ($numberOfSuccessfullUploadedFiles > 0) {
             printf("<p class='status'>%d " . textSuccessfulUploaded() . "</p>\n", $numberOfSuccessfullUploadedFiles);
         }
         ?>
 
         <form action="" method="post" enctype="multipart/form-data">
-            <input type="file" name="files[]" multiple="multiple" accept="*">
-            <p><b><?php echo textUploadSubline(); ?></b></p>
+            <div style="display: block; margin: 20px;">
+                <input type="file" name="files[]" multiple="multiple" accept="*">
+            </div>
             <input type="submit" value="<?php echo textUploadButton(); ?>">
         </form>
-        <p style="font-style: italic;"><?php echo textUploadBottomLine(); ?></p>
+        <div style="display: block; font-style: italic;"></div>
+        <div class="infotext"><?php echo textUploadBottomLine(); ?></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
 </div>
 <div class="footer">
     <a href="https://github.com/timluedtke/minimalistic-PHP-Upload" target="_blank">minimalistic-PHP-Upload v1.4.0<br/>
         <img src="assets/GitHub_Logo.png" alt="logo github"></a>
 </div>
 </body>
+<script>
+    const form = document.querySelector('form');
+    const progressBar = document.getElementById('progressBar');
+    const infotext = document.getElementById('infotext');
+    const overlay = document.createElement('div');
+
+    overlay.className = 'overlay';
+    document.body.appendChild(overlay);
+
+    form.addEventListener('submit', function (e) {
+        //infotext.parentNode.removeChild(infotext);
+
+        e.preventDefault();
+        const formData = new FormData(form);
+        const xhr = new XMLHttpRequest();
+
+        overlay.style.display = 'block';
+
+        xhr.upload.addEventListener('progress', function (e) {
+            if (e.lengthComputable) {
+                const percentComplete = Math.round((e.loaded / e.total) * 100);
+                progressBar.style.width = percentComplete + '%';
+                progressBar.textContent = percentComplete + '%';
+            }
+        });
+
+        xhr.addEventListener('load', function () {
+            overlay.style.display = 'none';
+            progressBar.textContent = '<?php echo textSuccessfulUploaded(); ?>';
+        });
+
+        xhr.addEventListener('error', function () {
+            overlay.style.display = 'none';
+            progressBar.textContent = 'ERROR';
+        });
+
+        xhr.open('POST', form.action);
+        xhr.send(formData);
+    });
+</script>
 </html>

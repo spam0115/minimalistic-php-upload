@@ -22,7 +22,7 @@ function textSuccessfulUploaded(): string {
 }
 
 function textUploadSubline(): string {
-    return "Es k&ouml;nnen mehrere Dateien ausgew&auml;hlt und gleichzeitig hochgeladen werden.";
+    return "Es k&ouml;nnen auch mehrere Dateien ausgew&auml;hlt und gleichzeitig hochgeladen werden.";
 }
 
 function textUploadBottomLine(): string {

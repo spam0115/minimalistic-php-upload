@@ -33,7 +33,7 @@ The project itself is although licenced under GPL - see here for [license detail
 Changelog
 -----------
 ### Version 1.4.0
-* Improve visualisation of status "file is still uploading"
+* Improve visualisation of file upload status with progress-bar
 
 ### Version 1.3.2
 * added a random hash as prefix to the filenames on the server to avoid users accessing the files other than the reciever of the email _(for further details see [gitlab issue 2](https://github.com/timluedtke/minimalistic-PHP-Upload/issues/2))_
